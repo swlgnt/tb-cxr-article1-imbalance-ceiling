@@ -1,0 +1,25 @@
+\begin{table}[htbp]
+\centering
+\caption{Test macro F1-score by augmentation dose (fraction of the class gap closed; mean $\pm$ SD over seeds).}
+\label{tab:dose_macro_f1}
+\begin{tabular}{llcccc}
+\toprule
+Model & Augmentation & 0\% & 30\% & 50\% & 100\% \\
+\midrule
+resnet18 & Classical & 0.980 $\pm$ 0.005 & \textbf{0.987 $\pm$ 0.002} & 0.981 $\pm$ 0.005 & \textbf{0.983 $\pm$ 0.002} \\
+ & GAN & 0.980 $\pm$ 0.005 & 0.983 $\pm$ 0.006 & \textbf{0.986 $\pm$ 0.007} & 0.982 $\pm$ 0.007 \\
+\addlinespace
+resnet50 & Classical & 0.987 $\pm$ 0.005 & 0.984 $\pm$ 0.006 & \textbf{0.987 $\pm$ 0.004} & 0.983 $\pm$ 0.003 \\
+ & GAN & 0.987 $\pm$ 0.005 & \textbf{0.985 $\pm$ 0.005} & 0.985 $\pm$ 0.007 & \textbf{0.986 $\pm$ 0.005} \\
+\addlinespace
+densenet201 & Classical & 0.988 $\pm$ 0.005 & 0.987 $\pm$ 0.003 & \textbf{0.987 $\pm$ 0.003} & 0.984 $\pm$ 0.005 \\
+ & GAN & 0.988 $\pm$ 0.005 & \textbf{0.989 $\pm$ 0.005} & 0.984 $\pm$ 0.006 & \textbf{0.985 $\pm$ 0.005} \\
+\addlinespace
+xception & Classical & 0.984 $\pm$ 0.003 & \textbf{0.987 $\pm$ 0.002} & \textbf{0.988 $\pm$ 0.005} & 0.986 $\pm$ 0.004 \\
+ & GAN & 0.984 $\pm$ 0.003 & 0.983 $\pm$ 0.002 & 0.988 $\pm$ 0.004 & \textbf{0.989 $\pm$ 0.004} \\
+\addlinespace
+All models & Classical & 0.985 $\pm$ 0.005 & \textbf{0.986 $\pm$ 0.004} & \textbf{0.986 $\pm$ 0.005} & 0.984 $\pm$ 0.004 \\
+ & GAN & 0.985 $\pm$ 0.005 & 0.985 $\pm$ 0.005 & 0.985 $\pm$ 0.006 & \textbf{0.986 $\pm$ 0.006} \\
+\bottomrule
+\end{tabular}
+\end{table}

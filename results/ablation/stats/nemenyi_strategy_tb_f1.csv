@@ -1,0 +1,4 @@
+a,b,rank_a,rank_b,rank_diff,p_nemenyi,significant
+baseline,gan_gap100,1.6,2.1,0.5,0.502897435481422,False
+baseline,classic_gap100,1.6,2.3,0.6999999999999997,0.2608060660162488,False
+gan_gap100,classic_gap100,2.1,2.3,0.1999999999999997,0.8956377103362313,False

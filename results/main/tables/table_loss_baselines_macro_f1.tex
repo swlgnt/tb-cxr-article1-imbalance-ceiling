@@ -1,0 +1,17 @@
+\begin{table}[htbp]
+\centering
+\caption{Test macro F1-score: loss-level balancing versus adding TB images (mean $\pm$ SD over seeds; best per row in bold).}
+\label{tab:loss_macro_f1}
+\begin{tabular}{lccccc}
+\toprule
+Model & Original (CE) & Weighted CE & Focal loss & Classical 100\% & GAN 100\% \\
+\midrule
+resnet18 & 0.980 $\pm$ 0.005 & \textbf{0.987 $\pm$ 0.005} & 0.986 $\pm$ 0.006 & 0.983 $\pm$ 0.002 & 0.982 $\pm$ 0.007 \\
+resnet50 & 0.987 $\pm$ 0.005 & \textbf{0.988 $\pm$ 0.005} & 0.985 $\pm$ 0.009 & 0.983 $\pm$ 0.003 & 0.986 $\pm$ 0.005 \\
+densenet201 & 0.988 $\pm$ 0.005 & \textbf{0.992 $\pm$ 0.003} & 0.988 $\pm$ 0.002 & 0.984 $\pm$ 0.005 & 0.985 $\pm$ 0.005 \\
+xception & 0.984 $\pm$ 0.003 & 0.981 $\pm$ 0.005 & 0.982 $\pm$ 0.005 & 0.986 $\pm$ 0.004 & \textbf{0.989 $\pm$ 0.004} \\
+\midrule
+All models & 0.985 $\pm$ 0.005 & \textbf{0.987 $\pm$ 0.006} & 0.985 $\pm$ 0.006 & 0.984 $\pm$ 0.004 & 0.986 $\pm$ 0.006 \\
+\bottomrule
+\end{tabular}
+\end{table}

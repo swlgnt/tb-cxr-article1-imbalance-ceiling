@@ -1,0 +1,36 @@
+DIAGNOSIS KEBOCORAN & SHORTCUT  (config: config_abl.yaml)
+Data: latih 5761, validasi 823, uji 1646 | akurasi tebakan kelas terbanyak: 0.462
+Pra-pemrosesan: border_crop=0.06, intensity_norm=equalize
+
+==============================================================================
+A. SHORTCUT: seberapa jauh label bisa ditebak TANPA melihat lesi?
+   (tebakan kelas terbanyak = 0.462; sinyal KUAT bila akurasi >= 0.90)
+==============================================================================
+  statistik intensitas global              akurasi 0.923 | macro-F1 0.822 | sens. TB 0.437 -> KUAT
+  metadata (ukuran asli, ukuran file)      akurasi 0.643 | macro-F1 0.446 | sens. TB 0.000 -> LEMAH
+  citra 16x16                              akurasi 0.920 | macro-F1 0.831 | sens. TB 0.460 -> KUAT
+  citra 32x32                              akurasi 0.922 | macro-F1 0.830 | sens. TB 0.452 -> KUAT
+  tepi citra saja (tengah ditutup)         akurasi 0.890 | macro-F1 0.732 | sens. TB 0.238 -> SEDANG
+
+==============================================================================
+B. KEBOCORAN: apakah citra uji punya 'kembaran' di data latih?
+==============================================================================
+  Citra uji dengan kembaran (cosine >= 0.97): 15.2% | kesamaan label kembaran: 0.984
+  Akurasi 1-tetangga-terdekat (tanpa pelatihan): 0.933
+  Akurasi CNN baseline (10 run): citra berkembaran 0.999 vs tanpa kembaran 0.982
+  Periksa visual: fig_neighbors_top_pairs.png (apakah pasangan teratas pasien yang sama?)
+
+==============================================================================
+C. BUG PIPELINE: uji label acak
+==============================================================================
+  (tidak dijalankan)
+
+==============================================================================
+KESIMPULAN & SARAN
+==============================================================================
+  [!] INDIKASI kebocoran lintas split (perlu dikonfirmasi visual). Buka fig_neighbors_top_pairs.png:
+      - bila pasangan teratas benar-benar citra/pasien yang sama -> turunkan dedup.embedding.threshold (mis. 0.95), ulangi langkah 1-2 dan semua run;
+      - bila pasangan tampak berbeda -> kemiripan hanya mencerminkan kemiripan umum rontgen dada (fitur ImageNet tidak andal mengenali pasien yang sama), bukan kebocoran.
+  [!] Sinyal shortcut KUAT: kelas dapat dibedakan dari ciri teknis tanpa melihat lesi. Akurasi CNN yang sangat tinggi mungkin sebagian berasal dari ciri ini.
+      Saran: (1) coba data.border_crop: 0.06 dan/atau data.intensity_norm: equalize, jalankan ulang uji ini untuk melihat apakah sinyal turun; (2) tulis sebagai keterbatasan di paper; (3) validasi eksternal (RSUD Haji) menjadi bukti utama generalisasi.
+  Catatan: tanpa ID pasien, kebocoran hanya dapat DIMINIMALKAN, tidak dijamin nol.

@@ -1,0 +1,4 @@
+split,Normal,Abnormal_nonTB,Abnormal_TB,total
+train,2660,2660,441,5761
+val,380,380,63,823
+test,760,760,126,1646

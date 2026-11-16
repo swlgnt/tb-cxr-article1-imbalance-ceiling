@@ -1,0 +1,17 @@
+\begin{table}[htbp]
+\centering
+\caption{Test TB specificity: loss-level balancing versus adding TB images (mean $\pm$ SD over seeds; best per row in bold).}
+\label{tab:loss_tb_specificity}
+\begin{tabular}{lccccc}
+\toprule
+Model & Original (CE) & Weighted CE & Focal loss & Classical 100\% & GAN 100\% \\
+\midrule
+resnet18 & 0.997 $\pm$ 0.002 & \textbf{0.998 $\pm$ 0.001} & 0.997 $\pm$ 0.001 & 0.997 $\pm$ 0.001 & 0.997 $\pm$ 0.001 \\
+resnet50 & \textbf{0.998 $\pm$ 0.001} & 0.998 $\pm$ 0.001 & 0.998 $\pm$ 0.001 & 0.997 $\pm$ 0.002 & 0.998 $\pm$ 0.002 \\
+densenet201 & 0.998 $\pm$ 0.001 & \textbf{0.999 $\pm$ 0.001} & 0.997 $\pm$ 0.001 & 0.998 $\pm$ 0.001 & 0.998 $\pm$ 0.000 \\
+xception & 0.997 $\pm$ 0.001 & 0.997 $\pm$ 0.002 & 0.996 $\pm$ 0.003 & 0.998 $\pm$ 0.001 & \textbf{0.999 $\pm$ 0.000} \\
+\midrule
+All models & 0.998 $\pm$ 0.001 & \textbf{0.998 $\pm$ 0.001} & 0.997 $\pm$ 0.002 & 0.998 $\pm$ 0.001 & \textbf{0.998 $\pm$ 0.001} \\
+\bottomrule
+\end{tabular}
+\end{table}

@@ -1,0 +1,2 @@
+features,model,val_acc,test_acc,test_macro_f1,test_tb_recall,test_recall_per_class,verdict
+tepi citra saja (tengah ditutup),gboost,0.8979343863912516,0.8900364520048603,0.732028989974907,0.238095238095238,"[0.95, 0.9381578947368421, 0.23809523809523808]",SEDANG

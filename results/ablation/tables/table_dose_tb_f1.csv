@@ -1,0 +1,7 @@
+model,method,0%,100%
+resnet18,classic,0.933 ± 0.012,0.927 ± 0.022
+resnet18,gan,0.933 ± 0.012,0.923 ± 0.021
+densenet201,classic,0.947 ± 0.014,0.924 ± 0.015
+densenet201,gan,0.947 ± 0.014,0.945 ± 0.006
+All models,classic,0.940 ± 0.014,0.926 ± 0.018
+All models,gan,0.940 ± 0.014,0.934 ± 0.019

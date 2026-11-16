@@ -1,0 +1,19 @@
+\begin{table}[htbp]
+\centering
+\caption{Test TB specificity by augmentation dose (fraction of the class gap closed; mean $\pm$ SD over seeds).}
+\label{tab:dose_tb_specificity}
+\begin{tabular}{llcc}
+\toprule
+Model & Augmentation & 0\% & 100\% \\
+\midrule
+resnet18 & Classical & 0.995 $\pm$ 0.003 & 0.993 $\pm$ 0.004 \\
+ & GAN & 0.995 $\pm$ 0.003 & \textbf{0.996 $\pm$ 0.002} \\
+\addlinespace
+densenet201 & Classical & 0.995 $\pm$ 0.002 & 0.995 $\pm$ 0.003 \\
+ & GAN & 0.995 $\pm$ 0.002 & \textbf{0.996 $\pm$ 0.002} \\
+\addlinespace
+All models & Classical & 0.995 $\pm$ 0.002 & 0.994 $\pm$ 0.004 \\
+ & GAN & 0.995 $\pm$ 0.002 & \textbf{0.996 $\pm$ 0.002} \\
+\bottomrule
+\end{tabular}
+\end{table}

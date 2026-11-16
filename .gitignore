@@ -1,0 +1,12 @@
+# rilis publik: data, bobot model, dan prediksi per citra tidak pernah masuk repositori
+data/
+work*/
+*.pt
+*.pth
+*_predictions.csv
+predictions/
+__pycache__/
+*.py[cod]
+.DS_Store
+Thumbs.db
+desktop.ini

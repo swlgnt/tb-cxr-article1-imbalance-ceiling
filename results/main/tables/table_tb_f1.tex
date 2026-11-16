@@ -1,0 +1,50 @@
+\begin{table}[htbp]
+\centering
+\caption{Test TB F1-score (mean $\pm$ SD over seeds).}
+\label{tab:tb_f1}
+\begin{tabular}{llc}
+\toprule
+Model & Strategy & orig (6.0:1) \\
+\midrule
+resnet18 & baseline & 0.958 $\pm$ 0.011 \\
+ & weighted\_ce & 0.974 $\pm$ 0.013 \\
+ & focal & 0.972 $\pm$ 0.015 \\
+ & classic\_gap30 & 0.975 $\pm$ 0.003 \\
+ & classic\_gap50 & 0.959 $\pm$ 0.011 \\
+ & classic\_gap100 & 0.965 $\pm$ 0.005 \\
+ & gan\_gap30 & 0.966 $\pm$ 0.016 \\
+ & gan\_gap50 & 0.972 $\pm$ 0.017 \\
+ & gan\_gap100 & 0.962 $\pm$ 0.018 \\
+\addlinespace
+resnet50 & baseline & 0.975 $\pm$ 0.011 \\
+ & weighted\_ce & 0.976 $\pm$ 0.012 \\
+ & focal & 0.971 $\pm$ 0.023 \\
+ & classic\_gap30 & 0.967 $\pm$ 0.016 \\
+ & classic\_gap50 & 0.975 $\pm$ 0.012 \\
+ & classic\_gap100 & 0.963 $\pm$ 0.008 \\
+ & gan\_gap30 & 0.968 $\pm$ 0.011 \\
+ & gan\_gap50 & 0.969 $\pm$ 0.018 \\
+ & gan\_gap100 & 0.971 $\pm$ 0.012 \\
+\addlinespace
+densenet201 & baseline & 0.977 $\pm$ 0.012 \\
+ & weighted\_ce & \textbf{0.986 $\pm$ 0.008} \\
+ & focal & 0.976 $\pm$ 0.006 \\
+ & classic\_gap30 & 0.974 $\pm$ 0.007 \\
+ & classic\_gap50 & 0.975 $\pm$ 0.008 \\
+ & classic\_gap100 & 0.967 $\pm$ 0.011 \\
+ & gan\_gap30 & 0.979 $\pm$ 0.012 \\
+ & gan\_gap50 & 0.965 $\pm$ 0.014 \\
+ & gan\_gap100 & 0.969 $\pm$ 0.012 \\
+\addlinespace
+xception & baseline & 0.968 $\pm$ 0.008 \\
+ & weighted\_ce & 0.962 $\pm$ 0.014 \\
+ & focal & 0.963 $\pm$ 0.012 \\
+ & classic\_gap30 & 0.976 $\pm$ 0.005 \\
+ & classic\_gap50 & 0.978 $\pm$ 0.014 \\
+ & classic\_gap100 & 0.972 $\pm$ 0.008 \\
+ & gan\_gap30 & 0.965 $\pm$ 0.005 \\
+ & gan\_gap50 & 0.976 $\pm$ 0.010 \\
+ & gan\_gap100 & 0.980 $\pm$ 0.010 \\
+\bottomrule
+\end{tabular}
+\end{table}

@@ -1,0 +1,116 @@
+{
+  "majority_acc": 0.4617253948967193,
+  "n_train": 5761,
+  "n_val": 823,
+  "n_test": 1646,
+  "prep": {
+    "border_crop": 0.0,
+    "intensity_norm": "none"
+  },
+  "tests": {
+    "lowlevel": [
+      {
+        "features": "statistik intensitas global",
+        "model": "gboost",
+        "val_acc": 0.9696233292831106,
+        "test_acc": 0.9738760631834751,
+        "test_macro_f1": 0.9464428826613265,
+        "test_tb_recall": 0.8174603174603174,
+        "test_recall_per_class": [
+          0.9855263157894737,
+          0.9881578947368421,
+          0.8174603174603174
+        ],
+        "verdict": "KUAT"
+      },
+      {
+        "features": "metadata (ukuran asli, ukuran file)",
+        "model": "logistic",
+        "val_acc": 0.6026731470230863,
+        "test_acc": 0.6427703523693803,
+        "test_macro_f1": 0.4457108817789532,
+        "test_tb_recall": 0.0,
+        "test_recall_per_class": [
+          0.6907894736842105,
+          0.7013157894736842,
+          0.0
+        ],
+        "verdict": "LEMAH"
+      }
+    ],
+    "thumbnail": [
+      {
+        "features": "citra 16x16",
+        "model": "gboost",
+        "val_acc": 0.9489671931956257,
+        "test_acc": 0.9556500607533415,
+        "test_macro_f1": 0.9136855902311188,
+        "test_tb_recall": 0.6904761904761905,
+        "test_recall_per_class": [
+          0.9815789473684211,
+          0.9736842105263158,
+          0.6904761904761905
+        ],
+        "verdict": "KUAT"
+      },
+      {
+        "features": "citra 32x32",
+        "model": "gboost",
+        "val_acc": 0.9611178614823815,
+        "test_acc": 0.9635479951397327,
+        "test_macro_f1": 0.9251711699310395,
+        "test_tb_recall": 0.7142857142857143,
+        "test_recall_per_class": [
+          0.9828947368421053,
+          0.9855263157894737,
+          0.7142857142857143
+        ],
+        "verdict": "KUAT"
+      }
+    ],
+    "border": [
+      {
+        "features": "tepi citra saja (tengah ditutup)",
+        "model": "gboost",
+        "val_acc": 0.9441069258809235,
+        "test_acc": 0.9477521263669502,
+        "test_macro_f1": 0.9017058326918045,
+        "test_tb_recall": 0.6746031746031746,
+        "test_recall_per_class": [
+          0.9736842105263158,
+          0.9671052631578947,
+          0.6746031746031746
+        ],
+        "verdict": "KUAT"
+      }
+    ],
+    "neighbors": {
+      "threshold": 0.97,
+      "n_test": 1646,
+      "frac_twins": 0.15249088699878494,
+      "one_nn_accuracy": 0.9331713244228432,
+      "median_nn_cosine": 0.9634941816329956,
+      "twin_label_agreement": 0.9840637450199203,
+      "cnn_acc_on_twins": 0.9984063745019921,
+      "cnn_acc_on_clean": 0.9890322580645161,
+      "cnn_runs_used": 20
+    },
+    "shuffle": {
+      "model": "resnet18",
+      "epochs": 5,
+      "test_acc": 0.45929526123936815,
+      "test_macro_f1": 0.33238693936889674,
+      "test_macro_auc": 0.5013148426307806,
+      "macro_auc_ci95": [
+        0.47796222381663045,
+        0.5245642721399383
+      ],
+      "majority_acc": 0.4617253948967193
+    }
+  },
+  "flags": {
+    "shortcut": true,
+    "leakage": true,
+    "pipeline_bug": false
+  }
+}

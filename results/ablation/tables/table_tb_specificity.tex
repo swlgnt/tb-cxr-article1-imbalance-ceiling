@@ -1,0 +1,18 @@
+\begin{table}[htbp]
+\centering
+\caption{Test TB specificity (mean $\pm$ SD over seeds).}
+\label{tab:tb_specificity}
+\begin{tabular}{llc}
+\toprule
+Model & Strategy & orig (6.0:1) \\
+\midrule
+resnet18 & baseline & 0.995 $\pm$ 0.003 \\
+ & classic\_gap100 & 0.993 $\pm$ 0.004 \\
+ & gan\_gap100 & 0.996 $\pm$ 0.002 \\
+\addlinespace
+densenet201 & baseline & 0.995 $\pm$ 0.002 \\
+ & classic\_gap100 & 0.995 $\pm$ 0.003 \\
+ & gan\_gap100 & \textbf{0.996 $\pm$ 0.002} \\
+\bottomrule
+\end{tabular}
+\end{table}

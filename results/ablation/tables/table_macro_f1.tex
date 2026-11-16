@@ -1,0 +1,18 @@
+\begin{table}[htbp]
+\centering
+\caption{Test macro F1-score (mean $\pm$ SD over seeds).}
+\label{tab:macro_f1}
+\begin{tabular}{llc}
+\toprule
+Model & Strategy & orig (6.0:1) \\
+\midrule
+resnet18 & baseline & 0.969 $\pm$ 0.005 \\
+ & classic\_gap100 & 0.967 $\pm$ 0.009 \\
+ & gan\_gap100 & 0.966 $\pm$ 0.009 \\
+\addlinespace
+densenet201 & baseline & \textbf{0.975 $\pm$ 0.006} \\
+ & classic\_gap100 & 0.965 $\pm$ 0.006 \\
+ & gan\_gap100 & 0.974 $\pm$ 0.003 \\
+\bottomrule
+\end{tabular}
+\end{table}

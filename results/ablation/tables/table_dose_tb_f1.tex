@@ -1,0 +1,19 @@
+\begin{table}[htbp]
+\centering
+\caption{Test TB F1-score by augmentation dose (fraction of the class gap closed; mean $\pm$ SD over seeds).}
+\label{tab:dose_tb_f1}
+\begin{tabular}{llcc}
+\toprule
+Model & Augmentation & 0\% & 100\% \\
+\midrule
+resnet18 & Classical & 0.933 $\pm$ 0.012 & \textbf{0.927 $\pm$ 0.022} \\
+ & GAN & 0.933 $\pm$ 0.012 & 0.923 $\pm$ 0.021 \\
+\addlinespace
+densenet201 & Classical & 0.947 $\pm$ 0.014 & 0.924 $\pm$ 0.015 \\
+ & GAN & 0.947 $\pm$ 0.014 & \textbf{0.945 $\pm$ 0.006} \\
+\addlinespace
+All models & Classical & 0.940 $\pm$ 0.014 & 0.926 $\pm$ 0.018 \\
+ & GAN & 0.940 $\pm$ 0.014 & \textbf{0.934 $\pm$ 0.019} \\
+\bottomrule
+\end{tabular}
+\end{table}

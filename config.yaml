@@ -1,0 +1,206 @@
+# =============================================================================
+#  Studi ketidakseimbangan kelas terkontrol - TBX11K tiga kelas
+#  Semua path relatif dihitung dari lokasi file config ini.
+# =============================================================================
+project: tbx11k_imbalance_study
+
+paths:
+  data_root: ./data/TBX11K          # folder hasil ekstrak TBX11K
+  work_dir: ./work                  # semua keluaran (indeks, split, hasil, gambar)
+
+data:
+  index_mode: auto                  # auto | xml | coco | csv | folders
+  csv:                              # dipakai bila index_mode = csv (mis. data.csv versi Kaggle)
+    file: data.csv
+    path_col: fname
+    path_prefix: imgs
+    label_col: label_source         # kolom berisi label sumber
+    folder_col: null
+    label_map: {}                   # nilai di CSV -> label sumber standar (lihat class_map)
+
+  class_names: [Normal, Abnormal_nonTB, Abnormal_TB]
+  short_names:                      # nama pendek TANPA garis bawah, untuk kunci metrik datar
+    Normal: normal
+    Abnormal_nonTB: nontb
+    Abnormal_TB: tb
+  minority_class: Abnormal_TB
+
+  # label sumber standar -> kelas penelitian ("exclude" = tidak dipakai)
+  class_map:
+    healthy: Normal
+    sick_non_tb: Abnormal_nonTB
+    active_tb: Abnormal_TB
+    latent_tb: exclude
+    active_latent_tb: exclude       
+    uncertain_tb: exclude
+    tb_unannotated: exclude
+
+  cache_size: 320                   # resize sisi terpendek & simpan cache (null = tanpa cache)
+  # ---- opsi pelemah shortcut (aktifkan bila 08_leakage_diagnostics.py menunjukkan sinyal shortcut kuat)
+  border_crop: 0.0                  # potong tepi tiap sisi (fraksi, mis. 0.06) untuk membuang penanda teks/bingkai
+  intensity_norm: none              # none | equalize (histogram equalization) | zscore (standarisasi per citra)
+  clahe:
+    enabled: false
+    clip_limit: 2.0
+    tile: 8
+
+dedup:
+  enabled: true
+  hash_size: 16                     # pHash 16x16 = 256 bit
+  max_hamming: 10                   # jarak <=10 dari 256 bit (~4%) dianggap hampir identik
+  max_group_size: 20                # pengaman efek berantai union-find
+  embedding:                        # lapis kedua: citra sangat mirip menurut fitur CNN -> split yang sama
+    enabled: true
+    model: resnet50.tv_in1k
+    pretrained: true
+    threshold: 0.97                 # cosine; periksa embedding_pairs.csv & uji 'neighbors' (08) untuk menyesuaikan
+    mutual_k: 2                     # hanya pasangan yang SALING termasuk 2 tetangga terdekat (cegah efek berantai)
+  drop_label_conflicts: true        # buang grup duplikat yang labelnya saling bertentangan
+
+split:
+  seed: 2026
+  test_frac: 0.20
+  val_frac: 0.10                    # terhadap total
+
+imbalance:
+  design: fix_minority              # fix_minority | fix_majority
+  ratios: [orig]                    # desain dosis: SEMUA data latih asli dipakai (tidak ada subsampling)
+  minority_n: null                  # null = seluruh TB di train (fix_minority)
+  majority_n: null                  # null = seluruh mayoritas (fix_majority)
+
+# ---------------------------------------------------------------- strategi
+# augment : augmentasi klasik on-the-fly
+# balance : none | oversample (salinan kelas kecil + augmentasi -> tiap epoch seimbang)
+# loss    : ce | weighted_ce | focal | weighted_focal
+# synthetic_csv : (untuk artikel berikutnya) CSV citra sintetis GAN/CGAN -> HANYA ke data latih
+strategies:
+  baseline:             {augment: false, balance: none,       loss: ce}
+  classic_aug:          {augment: true,  balance: none,       loss: ce}
+  classic_aug_balanced: {augment: true,  balance: oversample, loss: ce}
+  # ---- PEMBANDING LEVEL LOSS (lihat PANDUAN_PEMBANDING_LOSS.md)
+  #      Data latih IDENTIK dengan baseline (semua citra asli, tanpa augmentasi, tanpa citra tambahan);
+  #      yang berbeda HANYA fungsi loss. weighted_ce = bobot kelas (train.weight_scheme);
+  #      focal = focal loss murni (train.focal_gamma), tanpa bobot kelas, agar dua mekanisme terpisah.
+  weighted_ce:          {augment: false, balance: none,       loss: weighted_ce}
+  focal:                {augment: false, balance: none,       loss: focal}
+  # data asli + citra TB sintetis GAN dasar (dibuat oleh 02b & 02c). Path relatif terhadap work_dir.
+  gan_basic:            {augment: false, balance: none,       loss: ce,
+                         synthetic_csv: synthetic/gan/synthetic.csv, synthetic_mode: balance}
+
+  # ---- DESAIN DOSIS: semua citra asli + tambahan citra TB sebesar dosis × gap
+  #      gap = n_kelas_terbesar − n_TB (mis. 2660 − 560 = 2100); dosis 0,30 -> +630 citra TB.
+  #      classic: salinan citra TB asli + augmentasi (hanya salinan yang diaugmentasi; tetap antar epoch)
+  #      gan    : citra TB sintetis GAN dasar (langkah 2b-2c)
+  #      Citra tambahan BERSARANG antar dosis (630 ⊂ 1050 ⊂ 2100) dan sama untuk semua seed.
+  classic_gap30:  {augment: false, balance: none, loss: ce, extra: classic, dose: 0.30}
+  classic_gap50:  {augment: false, balance: none, loss: ce, extra: classic, dose: 0.50}
+  classic_gap100: {augment: false, balance: none, loss: ce, extra: classic, dose: 1.00}
+  gan_gap30:      {augment: false, balance: none, loss: ce, extra: gan, dose: 0.30, synthetic_csv: synthetic/gan/synthetic.csv}
+  gan_gap50:      {augment: false, balance: none, loss: ce, extra: gan, dose: 0.50, synthetic_csv: synthetic/gan/synthetic.csv}
+  gan_gap100:     {augment: false, balance: none, loss: ce, extra: gan, dose: 1.00, synthetic_csv: synthetic/gan/synthetic.csv}
+  # contoh untuk Scopus 1/2 nanti:
+  # cgan_opt:  {augment: false, balance: none, loss: ce,
+  #             synthetic_csv: synthetic/cgan_opt/synthetic.csv, synthetic_mode: balance}
+
+augmentation:                       # augmentasi klasik (sesuai Bab II proposal)
+  crop_scale: [0.85, 1.0]
+  crop_ratio: [0.95, 1.05]
+  rotation_deg: 10
+  translate: [0.08, 0.08]
+  scale: [0.95, 1.05]
+  affine_p: 0.7
+  hflip_p: 0.5                      # catatan: flip mengubah sisi jantung; set 0 bila tidak dikehendaki
+  vflip_p: 0.0                      # vertical flip tidak realistis secara anatomis
+  brightness: 0.2
+  contrast: 0.2
+  jitter_p: 0.7
+  blur_p: 0.0
+  noise_p: 0.3
+  noise_std: [0.0, 0.03]
+
+# ---------------------------------------------------------------- GAN dasar (langkah 2b & 2c)
+# DCGAN, loss non-saturating, hanya citra TB data latih. Wasserstein/SSIM/perceptual loss
+# sengaja TIDAK dipakai (komponen CGAN teroptimasi untuk artikel Scopus).
+gan:
+  name: gan
+  img_size: 256                     # pangkat 2 (128 atau 256)
+  z_dim: 128
+  base_channels: 32
+  max_channels: 512
+  upsample: nearest                 # nearest (+conv, kurangi artefak) | transpose (DCGAN klasik)
+  batch_size: 32                    # kurangi ke 16 bila GPU kehabisan memori
+  steps: 40000                      # jumlah iterasi pelatihan
+  lr_g: 2.0e-4
+  lr_d: 2.0e-4
+  betas: [0.5, 0.999]
+  real_label: 1.0                   # 0.9 = one-sided label smoothing (opsional)
+  diffaugment: brightness,contrast,translation,cutout   # kosongkan "" untuk mematikan
+  ema_decay: 0.999
+  log_every: 200
+  sample_every: 1000
+  eval_every: 2000                  # hitung FID/KID & simpan generator terbaik
+  n_eval_samples: 1000
+  ckpt_every: 1000
+  seed: 2026
+
+diagnostics:                        # 08_leakage_diagnostics.py
+  shuffle_epochs: 5                 # epoch untuk uji label acak
+  shuffle_model: resnet18
+  neighbor_threshold: 0.97          # similaritas cosine untuk menandai "kembaran" lintas split
+  strong_shortcut_acc: 0.90         # akurasi model sederhana >= ini -> sinyal shortcut KUAT
+
+dose_design:
+  selection_seed: 2026              # seed TETAP pemilihan citra tambahan (sama untuk semua seed pelatihan)
+
+models:                             # nama timm + tag bobot pretrained
+  resnet18:    {timm_name: resnet18.tv_in1k,         img_size: 224}
+  resnet50:    {timm_name: resnet50.tv_in1k,         img_size: 224}
+  densenet201: {timm_name: densenet201.tv_in1k,      img_size: 224, batch_size: 24}
+  xception:    {timm_name: legacy_xception.tf_in1k,  img_size: 299, batch_size: 24}
+
+train:
+  pretrained: true
+  epochs: 40
+  min_epochs: 5
+  batch_size: 32
+  lr: 1.0e-4
+  weight_decay: 1.0e-4
+  warmup_epochs: 1
+  min_lr_ratio: 0.01
+  freeze_epochs: 0                  # >0: latih head saja di awal
+  drop_rate: 0.2
+  label_smoothing: 0.0
+  weight_scheme: inverse            # untuk weighted_ce/weighted_focal: inverse | sqrt_inverse | effective
+  focal_gamma: 2.0
+  grad_clip: 1.0
+  amp: true
+  amp_dtype: fp16                   # fp16 | bf16
+  channels_last: false
+  num_workers: 4
+  monitor: macro_f1                 # metrik val untuk early stopping & pemilihan bobot terbaik
+  monitor_mode: max
+  patience: 7
+  min_delta: 1.0e-4
+  deterministic: false
+  use_cache: true
+  save_last: true                   # checkpoint tiap epoch -> bisa resume jika Colab terputus
+  keep_checkpoint: true             # simpan best.pt (butuh ruang: ~45-110 MB per run)
+
+experiment:                         # grid yang dijalankan oleh 03_run_experiments.py
+  models: [resnet18, resnet50, densenet201, xception]
+  # 7 skenario dosis + 2 pembanding level loss = 9 strategi × 4 model × 5 seed = 180 run
+  # (140 run desain dosis + 40 run pembanding loss; run yang sudah selesai otomatis dilewati)
+  strategies: [baseline, classic_gap30, classic_gap50, classic_gap100, gan_gap30, gan_gap50, gan_gap100,
+               weighted_ce, focal]
+  seeds: [42, 43, 44, 45, 123]            # disarankan 5 seed bila komputasi memungkinkan
+
+evaluation:
+  n_bootstrap: 1000
+  bootstrap_metrics: [macro_f1, balanced_accuracy, macro_auc, tb_recall, tb_precision, tb_f1, tb_auc, tb_specificity]
+
+analysis:
+  key_metrics: [macro_f1, balanced_accuracy, macro_auc, tb_recall, tb_f1, tb_auc, tb_specificity, mcc]
+  primary_metrics: [macro_f1, tb_recall]   # metrik PRIMER: koreksi Holm lintas-metrik hanya di antara ini
+  reference_strategy: baseline
+  higher_is_better: true
+  alpha: 0.05

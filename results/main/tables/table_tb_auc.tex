@@ -1,0 +1,50 @@
+\begin{table}[htbp]
+\centering
+\caption{Test TB AUC (one-vs-rest) (mean $\pm$ SD over seeds).}
+\label{tab:tb_auc}
+\begin{tabular}{llc}
+\toprule
+Model & Strategy & orig (6.0:1) \\
+\midrule
+resnet18 & baseline & 0.999 $\pm$ 0.001 \\
+ & weighted\_ce & 1.000 $\pm$ 0.000 \\
+ & focal & 1.000 $\pm$ 0.000 \\
+ & classic\_gap30 & 1.000 $\pm$ 0.000 \\
+ & classic\_gap50 & 0.999 $\pm$ 0.000 \\
+ & classic\_gap100 & 1.000 $\pm$ 0.000 \\
+ & gan\_gap30 & 1.000 $\pm$ 0.000 \\
+ & gan\_gap50 & 1.000 $\pm$ 0.000 \\
+ & gan\_gap100 & 1.000 $\pm$ 0.000 \\
+\addlinespace
+resnet50 & baseline & 1.000 $\pm$ 0.000 \\
+ & weighted\_ce & 1.000 $\pm$ 0.000 \\
+ & focal & 1.000 $\pm$ 0.000 \\
+ & classic\_gap30 & 0.999 $\pm$ 0.000 \\
+ & classic\_gap50 & 1.000 $\pm$ 0.000 \\
+ & classic\_gap100 & 1.000 $\pm$ 0.000 \\
+ & gan\_gap30 & 1.000 $\pm$ 0.000 \\
+ & gan\_gap50 & 1.000 $\pm$ 0.000 \\
+ & gan\_gap100 & 1.000 $\pm$ 0.000 \\
+\addlinespace
+densenet201 & baseline & \textbf{1.000 $\pm$ 0.000} \\
+ & weighted\_ce & \textbf{1.000 $\pm$ 0.000} \\
+ & focal & 1.000 $\pm$ 0.000 \\
+ & classic\_gap30 & 1.000 $\pm$ 0.000 \\
+ & classic\_gap50 & 1.000 $\pm$ 0.000 \\
+ & classic\_gap100 & 1.000 $\pm$ 0.000 \\
+ & gan\_gap30 & 1.000 $\pm$ 0.000 \\
+ & gan\_gap50 & 1.000 $\pm$ 0.000 \\
+ & gan\_gap100 & 0.999 $\pm$ 0.001 \\
+\addlinespace
+xception & baseline & 1.000 $\pm$ 0.000 \\
+ & weighted\_ce & 1.000 $\pm$ 0.000 \\
+ & focal & 0.999 $\pm$ 0.000 \\
+ & classic\_gap30 & 1.000 $\pm$ 0.000 \\
+ & classic\_gap50 & 1.000 $\pm$ 0.000 \\
+ & classic\_gap100 & 0.999 $\pm$ 0.000 \\
+ & gan\_gap30 & 0.999 $\pm$ 0.001 \\
+ & gan\_gap50 & 1.000 $\pm$ 0.000 \\
+ & gan\_gap100 & 0.999 $\pm$ 0.001 \\
+\bottomrule
+\end{tabular}
+\end{table}

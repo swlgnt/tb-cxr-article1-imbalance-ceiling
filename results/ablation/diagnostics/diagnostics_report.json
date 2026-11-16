@@ -1,0 +1,104 @@
+{
+  "majority_acc": 0.4617253948967193,
+  "n_train": 5761,
+  "n_val": 823,
+  "n_test": 1646,
+  "prep": {
+    "border_crop": 0.06,
+    "intensity_norm": "equalize"
+  },
+  "tests": {
+    "lowlevel": [
+      {
+        "features": "statistik intensitas global",
+        "model": "gboost",
+        "val_acc": 0.9319562575941677,
+        "test_acc": 0.9234507897934386,
+        "test_macro_f1": 0.8218752263350826,
+        "test_tb_recall": 0.4365079365079365,
+        "test_recall_per_class": [
+          0.9697368421052631,
+          0.9578947368421052,
+          0.4365079365079365
+        ],
+        "verdict": "KUAT"
+      },
+      {
+        "features": "metadata (ukuran asli, ukuran file)",
+        "model": "logistic",
+        "val_acc": 0.6026731470230863,
+        "test_acc": 0.6427703523693803,
+        "test_macro_f1": 0.4457108817789532,
+        "test_tb_recall": 0.0,
+        "test_recall_per_class": [
+          0.6907894736842105,
+          0.7013157894736842,
+          0.0
+        ],
+        "verdict": "LEMAH"
+      }
+    ],
+    "thumbnail": [
+      {
+        "features": "citra 16x16",
+        "model": "gboost",
+        "val_acc": 0.9125151883353585,
+        "test_acc": 0.9204131227217497,
+        "test_macro_f1": 0.8306303206528117,
+        "test_tb_recall": 0.4603174603174603,
+        "test_recall_per_class": [
+          0.9710526315789474,
+          0.9460526315789474,
+          0.4603174603174603
+        ],
+        "verdict": "KUAT"
+      },
+      {
+        "features": "citra 32x32",
+        "model": "gboost",
+        "val_acc": 0.9234507897934386,
+        "test_acc": 0.9222357229647631,
+        "test_macro_f1": 0.8297052531118831,
+        "test_tb_recall": 0.4523809523809524,
+        "test_recall_per_class": [
+          0.9710526315789474,
+          0.9513157894736842,
+          0.4523809523809524
+        ],
+        "verdict": "KUAT"
+      }
+    ],
+    "border": [
+      {
+        "features": "tepi citra saja (tengah ditutup)",
+        "model": "gboost",
+        "val_acc": 0.8979343863912516,
+        "test_acc": 0.8900364520048603,
+        "test_macro_f1": 0.732028989974907,
+        "test_tb_recall": 0.23809523809523808,
+        "test_recall_per_class": [
+          0.95,
+          0.9381578947368421,
+          0.23809523809523808
+        ],
+        "verdict": "SEDANG"
+      }
+    ],
+    "neighbors": {
+      "threshold": 0.97,
+      "n_test": 1646,
+      "frac_twins": 0.15249088699878494,
+      "one_nn_accuracy": 0.9331713244228432,
+      "median_nn_cosine": 0.9634941816329956,
+      "twin_label_agreement": 0.9840637450199203,
+      "cnn_acc_on_twins": 0.9988047808764939,
+      "cnn_acc_on_clean": 0.9816487455197134,
+      "cnn_runs_used": 10
+    }
+  },
+  "flags": {
+    "shortcut": true,
+    "leakage": true,
+    "pipeline_bug": false
+  }
+}

@@ -1,0 +1,18 @@
+\begin{table}[htbp]
+\centering
+\caption{Test TB sensitivity (mean $\pm$ SD over seeds).}
+\label{tab:tb_recall}
+\begin{tabular}{llc}
+\toprule
+Model & Strategy & orig (6.0:1) \\
+\midrule
+resnet18 & baseline & 0.932 $\pm$ 0.029 \\
+ & classic\_gap100 & 0.933 $\pm$ 0.004 \\
+ & gan\_gap100 & 0.905 $\pm$ 0.047 \\
+\addlinespace
+densenet201 & baseline & \textbf{0.952 $\pm$ 0.019} \\
+ & classic\_gap100 & 0.914 $\pm$ 0.039 \\
+ & gan\_gap100 & 0.938 $\pm$ 0.010 \\
+\bottomrule
+\end{tabular}
+\end{table}

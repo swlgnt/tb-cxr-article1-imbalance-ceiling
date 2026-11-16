@@ -1,0 +1,25 @@
+\begin{table}[htbp]
+\centering
+\caption{Test macro AUC by augmentation dose (fraction of the class gap closed; mean $\pm$ SD over seeds).}
+\label{tab:dose_macro_auc}
+\begin{tabular}{llcccc}
+\toprule
+Model & Augmentation & 0\% & 30\% & 50\% & 100\% \\
+\midrule
+resnet18 & Classical & 0.998 $\pm$ 0.001 & \textbf{0.998 $\pm$ 0.000} & 0.998 $\pm$ 0.001 & \textbf{0.998 $\pm$ 0.001} \\
+ & GAN & 0.998 $\pm$ 0.001 & 0.997 $\pm$ 0.001 & \textbf{0.998 $\pm$ 0.000} & 0.998 $\pm$ 0.000 \\
+\addlinespace
+resnet50 & Classical & 0.998 $\pm$ 0.001 & 0.997 $\pm$ 0.001 & \textbf{0.998 $\pm$ 0.001} & 0.997 $\pm$ 0.001 \\
+ & GAN & 0.998 $\pm$ 0.001 & \textbf{0.998 $\pm$ 0.001} & 0.997 $\pm$ 0.000 & \textbf{0.998 $\pm$ 0.000} \\
+\addlinespace
+densenet201 & Classical & 0.998 $\pm$ 0.001 & 0.998 $\pm$ 0.001 & 0.997 $\pm$ 0.000 & \textbf{0.998 $\pm$ 0.001} \\
+ & GAN & 0.998 $\pm$ 0.001 & \textbf{0.998 $\pm$ 0.000} & \textbf{0.998 $\pm$ 0.001} & 0.998 $\pm$ 0.000 \\
+\addlinespace
+xception & Classical & 0.998 $\pm$ 0.001 & \textbf{0.998 $\pm$ 0.001} & 0.998 $\pm$ 0.001 & 0.998 $\pm$ 0.001 \\
+ & GAN & 0.998 $\pm$ 0.001 & 0.997 $\pm$ 0.001 & \textbf{0.998 $\pm$ 0.001} & \textbf{0.998 $\pm$ 0.001} \\
+\addlinespace
+All models & Classical & 0.998 $\pm$ 0.001 & 0.997 $\pm$ 0.001 & 0.998 $\pm$ 0.001 & \textbf{0.998 $\pm$ 0.001} \\
+ & GAN & 0.998 $\pm$ 0.001 & \textbf{0.998 $\pm$ 0.001} & \textbf{0.998 $\pm$ 0.001} & 0.998 $\pm$ 0.001 \\
+\bottomrule
+\end{tabular}
+\end{table}

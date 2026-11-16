@@ -1,0 +1,2 @@
+a,b,rank_a,rank_b,rank_diff,p_nemenyi,significant
+densenet201,resnet18,1.3333333333333333,1.6666666666666667,0.3333333333333335,0.1967056024589466,False

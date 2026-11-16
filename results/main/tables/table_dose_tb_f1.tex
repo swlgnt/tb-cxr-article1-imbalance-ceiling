@@ -1,0 +1,25 @@
+\begin{table}[htbp]
+\centering
+\caption{Test TB F1-score by augmentation dose (fraction of the class gap closed; mean $\pm$ SD over seeds).}
+\label{tab:dose_tb_f1}
+\begin{tabular}{llcccc}
+\toprule
+Model & Augmentation & 0\% & 30\% & 50\% & 100\% \\
+\midrule
+resnet18 & Classical & 0.958 $\pm$ 0.011 & \textbf{0.975 $\pm$ 0.003} & 0.959 $\pm$ 0.011 & \textbf{0.965 $\pm$ 0.005} \\
+ & GAN & 0.958 $\pm$ 0.011 & 0.966 $\pm$ 0.016 & \textbf{0.972 $\pm$ 0.017} & 0.962 $\pm$ 0.018 \\
+\addlinespace
+resnet50 & Classical & 0.975 $\pm$ 0.011 & 0.967 $\pm$ 0.016 & \textbf{0.975 $\pm$ 0.012} & 0.963 $\pm$ 0.008 \\
+ & GAN & 0.975 $\pm$ 0.011 & \textbf{0.968 $\pm$ 0.011} & 0.969 $\pm$ 0.018 & \textbf{0.971 $\pm$ 0.012} \\
+\addlinespace
+densenet201 & Classical & 0.977 $\pm$ 0.012 & 0.974 $\pm$ 0.007 & \textbf{0.975 $\pm$ 0.008} & 0.967 $\pm$ 0.011 \\
+ & GAN & 0.977 $\pm$ 0.012 & \textbf{0.979 $\pm$ 0.012} & 0.965 $\pm$ 0.014 & \textbf{0.969 $\pm$ 0.012} \\
+\addlinespace
+xception & Classical & 0.968 $\pm$ 0.008 & \textbf{0.976 $\pm$ 0.005} & \textbf{0.978 $\pm$ 0.014} & 0.972 $\pm$ 0.008 \\
+ & GAN & 0.968 $\pm$ 0.008 & 0.965 $\pm$ 0.005 & 0.976 $\pm$ 0.010 & \textbf{0.980 $\pm$ 0.010} \\
+\addlinespace
+All models & Classical & 0.970 $\pm$ 0.012 & \textbf{0.973 $\pm$ 0.009} & \textbf{0.972 $\pm$ 0.013} & 0.967 $\pm$ 0.008 \\
+ & GAN & 0.970 $\pm$ 0.012 & 0.969 $\pm$ 0.012 & 0.971 $\pm$ 0.014 & \textbf{0.971 $\pm$ 0.014} \\
+\bottomrule
+\end{tabular}
+\end{table}

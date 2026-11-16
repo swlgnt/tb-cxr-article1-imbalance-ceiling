@@ -1,0 +1,50 @@
+\begin{table}[htbp]
+\centering
+\caption{Test TB sensitivity (mean $\pm$ SD over seeds).}
+\label{tab:tb_recall}
+\begin{tabular}{llc}
+\toprule
+Model & Strategy & orig (6.0:1) \\
+\midrule
+resnet18 & baseline & 0.951 $\pm$ 0.018 \\
+ & weighted\_ce & 0.970 $\pm$ 0.017 \\
+ & focal & 0.976 $\pm$ 0.025 \\
+ & classic\_gap30 & 0.979 $\pm$ 0.011 \\
+ & classic\_gap50 & 0.954 $\pm$ 0.018 \\
+ & classic\_gap100 & 0.960 $\pm$ 0.020 \\
+ & gan\_gap30 & 0.957 $\pm$ 0.014 \\
+ & gan\_gap50 & 0.986 $\pm$ 0.016 \\
+ & gan\_gap100 & 0.957 $\pm$ 0.026 \\
+\addlinespace
+resnet50 & baseline & 0.975 $\pm$ 0.015 \\
+ & weighted\_ce & 0.979 $\pm$ 0.012 \\
+ & focal & 0.970 $\pm$ 0.031 \\
+ & classic\_gap30 & 0.983 $\pm$ 0.013 \\
+ & classic\_gap50 & 0.971 $\pm$ 0.025 \\
+ & classic\_gap100 & 0.960 $\pm$ 0.018 \\
+ & gan\_gap30 & 0.968 $\pm$ 0.024 \\
+ & gan\_gap50 & 0.973 $\pm$ 0.029 \\
+ & gan\_gap100 & 0.970 $\pm$ 0.015 \\
+\addlinespace
+densenet201 & baseline & 0.978 $\pm$ 0.015 \\
+ & weighted\_ce & \textbf{0.987 $\pm$ 0.009} \\
+ & focal & 0.986 $\pm$ 0.013 \\
+ & classic\_gap30 & 0.968 $\pm$ 0.006 \\
+ & classic\_gap50 & 0.976 $\pm$ 0.016 \\
+ & classic\_gap100 & 0.960 $\pm$ 0.013 \\
+ & gan\_gap30 & 0.986 $\pm$ 0.013 \\
+ & gan\_gap50 & 0.967 $\pm$ 0.022 \\
+ & gan\_gap100 & 0.965 $\pm$ 0.020 \\
+\addlinespace
+xception & baseline & 0.970 $\pm$ 0.012 \\
+ & weighted\_ce & 0.960 $\pm$ 0.006 \\
+ & focal & 0.968 $\pm$ 0.011 \\
+ & classic\_gap30 & 0.970 $\pm$ 0.014 \\
+ & classic\_gap50 & 0.973 $\pm$ 0.009 \\
+ & classic\_gap100 & 0.965 $\pm$ 0.015 \\
+ & gan\_gap30 & 0.963 $\pm$ 0.015 \\
+ & gan\_gap50 & 0.973 $\pm$ 0.013 \\
+ & gan\_gap100 & 0.976 $\pm$ 0.019 \\
+\bottomrule
+\end{tabular}
+\end{table}

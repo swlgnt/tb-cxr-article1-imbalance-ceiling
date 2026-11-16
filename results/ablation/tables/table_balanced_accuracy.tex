@@ -1,0 +1,18 @@
+\begin{table}[htbp]
+\centering
+\caption{Test balanced accuracy (mean $\pm$ SD over seeds).}
+\label{tab:balanced_accuracy}
+\begin{tabular}{llc}
+\toprule
+Model & Strategy & orig (6.0:1) \\
+\midrule
+resnet18 & baseline & 0.968 $\pm$ 0.010 \\
+ & classic\_gap100 & 0.969 $\pm$ 0.002 \\
+ & gan\_gap100 & 0.960 $\pm$ 0.016 \\
+\addlinespace
+densenet201 & baseline & \textbf{0.977 $\pm$ 0.006} \\
+ & classic\_gap100 & 0.963 $\pm$ 0.011 \\
+ & gan\_gap100 & 0.972 $\pm$ 0.002 \\
+\bottomrule
+\end{tabular}
+\end{table}

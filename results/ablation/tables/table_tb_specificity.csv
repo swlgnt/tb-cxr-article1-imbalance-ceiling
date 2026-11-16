@@ -1,0 +1,7 @@
+model,strategy,orig (6.0:1)
+resnet18,baseline,0.995 ± 0.003
+resnet18,classic_gap100,0.993 ± 0.004
+resnet18,gan_gap100,0.996 ± 0.002
+densenet201,baseline,0.995 ± 0.002
+densenet201,classic_gap100,0.995 ± 0.003
+densenet201,gan_gap100,0.996 ± 0.002

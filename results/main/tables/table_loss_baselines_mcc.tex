@@ -1,0 +1,17 @@
+\begin{table}[htbp]
+\centering
+\caption{Test Matthews correlation coefficient: loss-level balancing versus adding TB images (mean $\pm$ SD over seeds; best per row in bold).}
+\label{tab:loss_mcc}
+\begin{tabular}{lccccc}
+\toprule
+Model & Original (CE) & Weighted CE & Focal loss & Classical 100\% & GAN 100\% \\
+\midrule
+resnet18 & 0.979 $\pm$ 0.006 & 0.985 $\pm$ 0.004 & \textbf{0.985 $\pm$ 0.004} & 0.982 $\pm$ 0.003 & 0.982 $\pm$ 0.005 \\
+resnet50 & 0.985 $\pm$ 0.005 & \textbf{0.986 $\pm$ 0.004} & 0.983 $\pm$ 0.007 & 0.982 $\pm$ 0.003 & 0.985 $\pm$ 0.004 \\
+densenet201 & 0.986 $\pm$ 0.005 & \textbf{0.989 $\pm$ 0.002} & 0.987 $\pm$ 0.001 & 0.984 $\pm$ 0.004 & 0.984 $\pm$ 0.004 \\
+xception & 0.983 $\pm$ 0.001 & 0.981 $\pm$ 0.004 & 0.982 $\pm$ 0.003 & 0.984 $\pm$ 0.005 & \textbf{0.987 $\pm$ 0.003} \\
+\midrule
+All models & 0.983 $\pm$ 0.005 & \textbf{0.985 $\pm$ 0.004} & 0.984 $\pm$ 0.005 & 0.983 $\pm$ 0.004 & 0.985 $\pm$ 0.004 \\
+\bottomrule
+\end{tabular}
+\end{table}

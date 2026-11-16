@@ -1,0 +1,48 @@
+{
+  "split": {
+    "seed": 2026,
+    "test_frac": 0.2,
+    "val_frac": 0.1
+  },
+  "imbalance": {
+    "design": "fix_minority",
+    "ratios": [
+      "orig"
+    ],
+    "minority_n": null,
+    "majority_n": null
+  },
+  "split_summary": {
+    "Normal": {
+      "train": 2660,
+      "val": 380,
+      "test": 760
+    },
+    "Abnormal_nonTB": {
+      "train": 2660,
+      "val": 380,
+      "test": 760
+    },
+    "Abnormal_TB": {
+      "train": 441,
+      "val": 63,
+      "test": 126
+    },
+    "total": {
+      "train": 5761,
+      "val": 823,
+      "test": 1646
+    }
+  },
+  "subsets": [
+    {
+      "design": "fix_minority",
+      "ratio": "orig",
+      "n_total": 5761,
+      "n_Normal": 2660,
+      "n_Abnormal_nonTB": 2660,
+      "n_Abnormal_TB": 441,
+      "actual_ratio_major_to_tb": 6.032
+    }
+  ]
+}

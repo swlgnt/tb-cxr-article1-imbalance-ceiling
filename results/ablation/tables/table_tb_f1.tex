@@ -1,0 +1,18 @@
+\begin{table}[htbp]
+\centering
+\caption{Test TB F1-score (mean $\pm$ SD over seeds).}
+\label{tab:tb_f1}
+\begin{tabular}{llc}
+\toprule
+Model & Strategy & orig (6.0:1) \\
+\midrule
+resnet18 & baseline & 0.933 $\pm$ 0.012 \\
+ & classic\_gap100 & 0.927 $\pm$ 0.022 \\
+ & gan\_gap100 & 0.923 $\pm$ 0.021 \\
+\addlinespace
+densenet201 & baseline & \textbf{0.947 $\pm$ 0.014} \\
+ & classic\_gap100 & 0.924 $\pm$ 0.015 \\
+ & gan\_gap100 & 0.945 $\pm$ 0.006 \\
+\bottomrule
+\end{tabular}
+\end{table}

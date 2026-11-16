@@ -1,0 +1,19 @@
+\begin{table}[htbp]
+\centering
+\caption{Test macro F1-score by augmentation dose (fraction of the class gap closed; mean $\pm$ SD over seeds).}
+\label{tab:dose_macro_f1}
+\begin{tabular}{llcc}
+\toprule
+Model & Augmentation & 0\% & 100\% \\
+\midrule
+resnet18 & Classical & 0.969 $\pm$ 0.005 & \textbf{0.967 $\pm$ 0.009} \\
+ & GAN & 0.969 $\pm$ 0.005 & 0.966 $\pm$ 0.009 \\
+\addlinespace
+densenet201 & Classical & 0.975 $\pm$ 0.006 & 0.965 $\pm$ 0.006 \\
+ & GAN & 0.975 $\pm$ 0.006 & \textbf{0.974 $\pm$ 0.003} \\
+\addlinespace
+All models & Classical & 0.972 $\pm$ 0.006 & 0.966 $\pm$ 0.007 \\
+ & GAN & 0.972 $\pm$ 0.006 & \textbf{0.970 $\pm$ 0.008} \\
+\bottomrule
+\end{tabular}
+\end{table}
