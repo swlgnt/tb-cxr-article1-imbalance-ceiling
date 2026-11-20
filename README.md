@@ -1,4 +1,4 @@
-# Do Class-Imbalance Remedies Help Near the Performance Ceiling? A Controlled Dose-Response Comparison of DCGAN and Classical Augmentation for Three-Class Tuberculosis Chest X-Ray Classification
+# DCGAN Versus Classical Augmentation at Matched Doses for Class-Imbalanced Tuberculosis Chest X-Ray Classification
 
 Code, data splits and per-run results for the conference paper of the same title
 (Swalaganata, Astuti & Hendradi; accepted at the 2027 9th International Seminar on Research of Information
@@ -36,6 +36,14 @@ TBX11K is publicly available from its authors (Liu et al., CVPR 2020) and is not
 3. `run_all.bat` (or the numbered scripts 01-06 in order) for the main grid; `run_loss_baselines.bat` for
    the loss-level comparators; `08_leakage_diagnostics.py` for the audit; `config_abl.yaml` with
    `03_run_experiments.py` for the ablation; `09_confusion_summary.py` for per-image error patterns.
+4. Robustness analyses reported in the paper:
+   - `10_collect_predictions.py` collects the test-set predictions of all runs into
+     `results/main/tables/predictions_all.csv.gz` (already included);
+   - `11_bootstrap_image_level.py results/main/tables/predictions_all.csv.gz results/main/diagnostics/neighbors.csv results/main/stats/bootstrap_results.csv 2000`
+     runs the two-level paired bootstrap (model x seed pairs and test images within class), with and without
+     twin test images;
+   - `12_mixed_model.py --runs results/main/tables/all_runs.csv --out results/main/stats/mixed_model.csv` fits the
+     linear mixed model (likelihood-ratio test for condition, Holm-corrected coefficients).
 
 ## Citation
 

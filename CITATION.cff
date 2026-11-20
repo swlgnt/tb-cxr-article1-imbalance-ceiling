@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: "If you use this code or these results, please cite it as below."
-title: "Do Class-Imbalance Remedies Help Near the Performance Ceiling? A Controlled Dose-Response Comparison of DCGAN and Classical Augmentation for Three-Class Tuberculosis Chest X-Ray Classification: code and results"
+title: "DCGAN Versus Classical Augmentation at Matched Doses for Class-Imbalanced Tuberculosis Chest X-Ray Classification: code and results"
 type: software
 version: "1.0.0"
 license: MIT
